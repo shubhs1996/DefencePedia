@@ -256,7 +256,7 @@ export const ABOUTFORCES = [
         'army',
         'The Indian Army',
         'The Indian Army is the land-based branch and the largest component of the Indian Armed Forces.The President of India is the Supreme Commander of the Indian Army,and its professional head is the Chief of Army Staff (COAS),who is a four-star general.Two officers have been conferred with the rank of field marshal,a five-star rank, which is a ceremonial position of great honour.The Indian Army originated from the armies of the East India Company,which eventually became the British Indian Army,and the armies of the princely states,which were merged into the national army after independence.The primary mission of the Indian Army is to ensure national security and national unity,to defend the nation from external aggression and internal threats,and to maintain peace and security within its borders',
-        '1 April 1985',
+        '1 April 1895',
         '1,237,117 active personnel\n960,000 reserve personnel\n245 manned aircraft',
         'Service Before Self',
         'General Manoj Mukund Naravane, PVSM, AVSM, SM, VSM, ADC',
@@ -579,7 +579,7 @@ export const BELOWOFFICERSRANK = [
     ),
     new Other(
         'navy',
-        ['Master Chief Pretty Officer(First Class)', 'Master Chief Pretty Officer(Second Class)', 'Chief Pretty Officer', 'Pretty Officer', 'Able Seaman', 'Seaman'],
+        ['Master Chief Pretty Officer(First Class)', 'Master Chief Petty Officer(Second Class)', 'Chief Petty Officer', 'Petty Officer', 'Able Seaman', 'Seaman'],
 
     ),
     new Other(

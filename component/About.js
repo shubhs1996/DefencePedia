@@ -10,7 +10,7 @@ const About = (props) => {
     const id=props.id;
     
     //console.log(props)
-    return <ScrollView><View style={{...styles.container,backgroundColor:id==='army'?Color.army:id==='navy'?Color.navy:Color.airforce}}>
+    return <ScrollView><View style={styles.container}>
         <View style={styles.subContainer}>
          <Text style={styles.title}>{props.title}</Text>
         
@@ -39,6 +39,7 @@ const About = (props) => {
 const styles = StyleSheet.create({
     container: {
        width: '100%',
+       marginTop:'5%'
         
     },
     subContainer:{
@@ -75,8 +76,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         marginVertical: '5%',
         fontFamily: 'nunito',
-        color:'white'
-
+      
     }
 
 })

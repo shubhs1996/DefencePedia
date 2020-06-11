@@ -16,4 +16,23 @@ const Rank =(props)=>{
 }
 
 
+Rank.navigationOptions=navData=>{
+
+    const color =navData.navigation.getParam('color')
+    
+        return {
+            headerStyle:{
+                backgroundColor:color
+            },
+            headerTintColor: '#fff',
+            hederTitleStyle:{
+                fontSize:25,
+                fontFamily:'nunito-bold',
+                textAlign:'center'
+            }
+        }
+    }
+    
+
+
 export default Rank

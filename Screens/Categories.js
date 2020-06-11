@@ -17,10 +17,10 @@ const Categories = (props) => {
       <Image source={require('../assets/images/indianAir.png')} style={styles.image}/>}
     </View>
        
-        <Options color={color} title='About' onSelect={() => props.navigation.navigate('About', { id: id })} />
-        <Options color={color} title='Entries' onSelect={() => props.navigation.navigate('EntryList', { id: id })} />
-        <Options color={color} title='Wars and Operations' onSelect={() => props.navigation.navigate('War_and_Operations',{id:id})} />
-        <Options color={color} title='Rank Structure' onSelect={() => props.navigation.navigate('Rank',{id:id})} />
+        <Options color={color} title='About' onSelect={() => props.navigation.navigate('About', { id: id ,color:color})} />
+        <Options color={color} title='Entries' onSelect={() => props.navigation.navigate('EntryList', { id: id,color:color })} />
+        <Options color={color} title='Wars and Operations' onSelect={() => props.navigation.navigate('War_and_Operations',{id:id,color:color})} />
+        <Options color={color} title='Rank Structure' onSelect={() => props.navigation.navigate('Rank',{id:id,color:color})} />
     </ScrollView>
 }
 
@@ -40,6 +40,24 @@ image:{
 
 }
 })
+
+
+Categories.navigationOptions=navData=>{
+
+const color =navData.navigation.getParam('color')
+
+    return {
+        headerStyle:{
+            backgroundColor:color
+        },
+        headerTintColor: '#fff',
+        hederTitleStyle:{
+            fontSize:25,
+            fontFamily:'nunito-bold',
+            textAlign:'center'
+        }
+    }
+}
 
 
 export default Categories;

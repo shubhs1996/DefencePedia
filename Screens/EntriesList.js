@@ -39,10 +39,23 @@ const EntryLists = (props) => {
     />
 }
 
+EntryLists.navigationOptions=navData=>{
 
-const styles = StyleSheet.create({
-
-})
+  const color =navData.navigation.getParam('color')
+  
+      return {
+          headerStyle:{
+              backgroundColor:color
+          },
+          headerTintColor: '#fff',
+          hederTitleStyle:{
+              fontSize:25,
+              fontFamily:'nunito-bold',
+              textAlign:'center'
+          }
+      }
+  }
+  
 
 
 export default EntryLists;

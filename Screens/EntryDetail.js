@@ -56,6 +56,7 @@ EntryDetail.navigationOptions=navData=>{
 
    const color =navData.navigation.getParam('color')
    
+   
        return {
            headerStyle:{
                backgroundColor:color

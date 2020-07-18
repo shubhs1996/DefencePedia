@@ -41,7 +41,7 @@ image:{
 }
 })
 
-
+//headrbar
 Categories.navigationOptions=navData=>{
 
 const color =navData.navigation.getParam('color')

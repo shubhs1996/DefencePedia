@@ -1,3 +1,4 @@
+//importing modals
 import Category from '../modals/ForceCategory'
 import Entry from '../modals/Entries'
 import QualifyingEntry from '../modals/qualifying'
@@ -6,12 +7,17 @@ import About from '../modals/About'
 import Operation from '../modals/Operations'
 import { Officer, Other } from '../modals/Rank'
 
+
+
+
+//Categories data
 export const CATEGORIES = [
     new Category('c1', 'IndianArmy', 'army', 'https://d2c7ipcroan06u.cloudfront.net/wp-content/uploads/2020/02/Indian-Army-4-696x392.jpg'),
     new Category('c2', 'IndianNavy', 'navy', 'https://i.cdn.newsbytesapp.com/images/116_18921531393675.jpg'),
     new Category('c3', 'IndianAirForce', 'airforce', 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201907/Indian-Air-Force-647-770x433.jpeg?oejF2NPKhxqtIsWuxXKFoMXQ5NGdkRzi')
 ]
 
+//Entrylists
 export const ENTRIESLIST = [
     new Entry('E1', 'National Defence Academy and Naval Academy', ['army', 'navy', 'airforce'], ['PC'], 'QE'),
     new Entry('E2', '10+2 Tech', ['army'], ['PC'], 'DE'),
@@ -24,7 +30,7 @@ export const ENTRIESLIST = [
     new Entry('E10', 'AEC(Army Education Corps', ['army'], ['PC'], 'DE'),
     new Entry('E11', 'TA(Territorial Army)', ['army'], ['PC'], 'QE'),
     new Entry('E12', 'Combined Defence Services Examination', ['army', 'navy', 'airforce'], ['PC'], 'QE'),
-    new Entry('E13', 'Special Naval Architects Entry Scheme', ['navy'], ['SSC'], 'QE'),
+    new Entry('E13', 'Special Naval Architects Entry Scheme', ['navy'], ['SSC'], 'DE'),
     new Entry('E15', 'INET(Indian Navy Entrance Test)', ['navy'], ['PC'], 'QE'),
     new Entry('E16', 'AFCAT(Air Force Common Admission Test', ['airforce'], ['PC'], 'QE'),
     new Entry('E17', 'Meteorological Branch', ['airforce'], ['PC', 'SSC'], 'DE'),

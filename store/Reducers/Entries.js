@@ -11,7 +11,13 @@ const init ={
 export default (state=init,action )=>{
    switch(action.type){
        case 'FILTER_LIST':
-const availableEntry =state.EntryList.filter(entry=>entry.entryCategory===action.value)
+           let availableEntry=[]
+           if(action.value!=='ALL'){
+         availableEntry =state.EntryList.filter(entry=>entry.entryCategory===action.value)
+           }else {
+               availableEntry=ENTRIESLIST
+           }
+
         
           return {...state,FilteredEntry:availableEntry}
    

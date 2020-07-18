@@ -4,9 +4,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 const WarAndOperation = (props) => {
+
+    //hiding or showing of content 
     const [display,setDisplay]=useState('none')
-
-
     const onPressHandler=()=>{
         if(display==='none'){
           setDisplay('flex')

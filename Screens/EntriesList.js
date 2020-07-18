@@ -1,35 +1,20 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { FlatList, View, Text } from 'react-native'
+import React from 'react'
+import { FlatList, View, Text,StyleSheet } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { filterEntry } from '../store/Actions/Entries'
 import EntryList from '../component/listofEntries'
 import { Color } from '../constant/color'
-import { Switch } from 'react-native-gesture-handler'
-import { HeaderButtons,Item} from 'react-navigation-header-buttons'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
-import HeaderButton from '../component/HeaderButton'
 
 const EntryLists = (props) => {
 
-  const { navigation } = props
-  const [value, setValue] = useState(false)
-  const [entryType,setType] =useState('ALL ENTRIES')
 
   const dispatch = useDispatch();
- 
-  const onswitchHandler = useCallback(() => {
-    setValue(!value)
-    const type =!value?'QUALIFYING ENTRIES':'DIRECT ENTRIES'
-    setType(type)
-    const entryCategory = value ? 'DE' : 'QE'
-    dispatch(filterEntry(entryCategory))
-  }, [value, dispatch])
 
-
-
-  useEffect(() => {
-    navigation.setParams({save: onswitchHandler, value: value,color:color });
-  }, [onswitchHandler, value]);
+  const onPressHandler=(value)=>{
+    dispatch(filterEntry(value))
+  }
 
   const data = useSelector(state => state.EntryLists.FilteredEntry)
   const force = props.navigation.getParam('id');
@@ -60,7 +45,18 @@ const EntryLists = (props) => {
 
 
   return <View>
-    <Text style={{textAlign:'center',fontSize:25}}>{entryType}</Text>
+  <View  style={styles.filter}>
+  <TouchableOpacity onPress={()=>onPressHandler('ALL')}>
+  <Text style={styles.filterOption}>ALL</Text>
+  </TouchableOpacity>
+  <TouchableOpacity onPress={()=>onPressHandler('DE')}>
+  <Text style={styles.filterOption}>DIRECT</Text>
+  </TouchableOpacity>
+  <TouchableOpacity onPress={()=>onPressHandler('QE')}>
+  <Text style={styles.filterOption}>QUALIFYING</Text>
+  </TouchableOpacity>
+  </View>
+
     <FlatList
       keyExtractor={(item, index) => item.id}
       data={availableData}
@@ -83,16 +79,22 @@ EntryLists.navigationOptions = navData => {
       fontFamily: 'nunito-bold',
       textAlign: 'center'
     },
-    headerRight: () => <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <Switch
-        trackColor={{ false: 'white', true: color }}
-        thumbColor='black'
-        value={navData.navigation.getParam('value')}
-        onValueChange={navData.navigation.getParam('save')}
-      />
-    </View>
   }
 }
+
+
+const styles=StyleSheet.create({
+  filter:{
+    width:'100%',
+    flexDirection:'row',
+    justifyContent:'space-around',
+    padding:8,
+    borderWidth:0.1
+  },
+  filterOption:{
+    fontSize:20,
+  }
+})
 
 
 

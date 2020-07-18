@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers,applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import Navigation from './ReactNavigation/MainNavigation'
+import ReduxThunk from 'redux-thunk'
 
+import Auth from './store/Reducers/auth'
 import DailyInfoReducer from './store/Reducers/DailyInfo'
-import NotificationReducer from './store/Reducers/Notification'
+import NotificationReducer from './store/Reducers/Information'
 import EntriesReducer from './store/Reducers/Entries'
+import Suggestion from  './store/Reducers/suggestion'
 
 const rootReducer = combineReducers({
-  Notification:NotificationReducer,
+  Information:NotificationReducer,
   dailyInfo: DailyInfoReducer,
-  EntryLists:EntriesReducer
-
+  EntryLists:EntriesReducer,
+  Auth:Auth,
+  Suggestion:Suggestion
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,applyMiddleware(ReduxThunk));
 
 
 const fetchFonts = () => {
@@ -39,7 +43,7 @@ export default function App() {
       />
     );
   }
-
+  console.disableYellowBox = true;
 
   return <Provider  store ={store}>
   <Navigation/> 

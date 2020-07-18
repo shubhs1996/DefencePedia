@@ -1,11 +1,19 @@
 import {createDrawerNavigator} from 'react-navigation-drawer'
-import stackNavigator from './StackNavigation'
-
+import {HomestackNavigator, DailyAffairs} from './StackNavigation'
+import {NotificationStackNavigator,AdminStackNavigator} from './StackNavigation'
 
 const DrawerNavigator=createDrawerNavigator({
-  Home:stackNavigator,
+  Home:HomestackNavigator,
+  Notification:NotificationStackNavigator,
+  Feeds:DailyAffairs,
+  Admin:AdminStackNavigator,
 //   About:About,
 //   Suggestions:Suggestions,
+},
+{
+  contentOptions: {
+    activeTintColor: '#f4511e',
+  }
 })
 
 

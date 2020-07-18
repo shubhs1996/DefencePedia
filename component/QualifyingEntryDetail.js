@@ -6,13 +6,13 @@ import { ScrollView } from 'react-native-gesture-handler'
 
 const DirectEntryDetail = (props) => {
     const { link } = props
-
+    
+    //open Browser using given link
     const _handlePressButtonAsync = async () => {
         let result = await WebBrowser.openBrowserAsync(link);
         
     };
 
-    //console.log(props)
     return <ScrollView><View style={styles.container}>
         <Text style={styles.title}>{props.title}</Text>
         <Text style={styles.text}>{props.detail}</Text>

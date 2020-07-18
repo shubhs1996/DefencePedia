@@ -3,10 +3,12 @@ import {ABOUTFORCES} from '../dummy-data/data'
 import About from '../component/About'
 
 const AboutForce =(props)=>{
+    //getting id from route
     const id =props.navigation.getParam('id');
 
+    //filtering of data
     const availableData=ABOUTFORCES.filter(about=>about.id===id)
-
+//passsing props to About Component
 return <About 
       title={availableData[0].title}
       content={availableData[0].content}
@@ -21,6 +23,8 @@ return <About
  />
 }
 
+
+//header Bar 
 AboutForce.navigationOptions=navData=>{
 
     const color =navData.navigation.getParam('color')

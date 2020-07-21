@@ -11,9 +11,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 const Login = (props) => {
     const [error, setErr] = useState(null)
     const [hide,setVisible]=useState(true)
+    const [pass, setPass] = useState()
     const dispatch = useDispatch();
 
-
+//on clicking back button 
     useEffect(() => {
         const backAction = () => {
             setErr(null)
@@ -29,14 +30,14 @@ const Login = (props) => {
         return () => backHandler.remove();
     }, []);
 
-    const [pass, setPass] = useState()
+   
 
-
+//on cancel
     const onCancelHandler = () => {
         props.navigation.navigate('Home')
     }
 
-
+//onSubmit
     const onsubmitHandler = async () => {
         try {
 

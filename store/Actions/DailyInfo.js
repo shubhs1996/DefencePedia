@@ -1,7 +1,7 @@
 import {Feed } from '../../modals/CollectionsModal'
 
 
-
+//Adding Feed
 export const addFeed =(title,link,content)=>{
  return async dispatch =>{
 
@@ -20,17 +20,15 @@ export const addFeed =(title,link,content)=>{
     }
   );
 
-  // if (!response.ok) {
-  //   const errorResData = await response.json();
-  //   const errorId = errorResData.error.message;
-  // console.log(errorId)
-  //   throw new Error(message);
-  // }
+
   dispatch({type:'ADDFEED'})
  }
 
 
 }
+
+
+//Load Feed from server
 
 export const LoadFeed=()=>{
 return async dispatch=>{

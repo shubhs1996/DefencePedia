@@ -10,6 +10,7 @@ import HeaderButton from '../component/HeaderButton'
 import { Color } from '../constant/color'
 import Suggestion from '../component/Suggestion'
 import {LoadFeed} from '../store/Actions/DailyInfo'
+import {loadInfo} from '../store/Actions/Information'
 
 
 const Home = (props) => {
@@ -20,13 +21,14 @@ const Home = (props) => {
   const [loading,setLoading]=useState(false)
  const [visible, setvisible] = useState(false)
 
-//loading Feeds
+//loading Feeds and Notification
 useEffect(()=>{
    const loadFeeds= async ()=>{
     
     setLoading(true)
     
     await dispatch(LoadFeed())
+    await dispatch(loadInfo())
     props.navigation.navigate('Feed')
     setLoading(false)
     
@@ -65,7 +67,7 @@ useEffect(()=>{
     );
   };
 
-
+//this will show that data loading is in progress
   if(loading){
     return <View style={styles.screen}>
     <ActivityIndicator color='black' size={30}/>

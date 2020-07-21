@@ -12,17 +12,20 @@ const EntryLists = (props) => {
 
   const dispatch = useDispatch();
 
+  //applying filter using dispatch 
   const onPressHandler=(value)=>{
     dispatch(filterEntry(value))
   }
 
+
+  //useselector to fetch data from redux store
   const data = useSelector(state => state.EntryLists.FilteredEntry)
   const force = props.navigation.getParam('id');
   const color = force === 'army' ? Color.army : force === 'navy' ? Color.navy : Color.airforce
   let availableData = data.filter((entry) => entry.category.includes(force))
 
 
-
+//rendering each entries
   const renderList = itemData => {
     return (
       <EntryList
@@ -43,7 +46,7 @@ const EntryLists = (props) => {
     );
   };
 
-
+//rendering
   return <View>
   <View  style={styles.filter}>
   <TouchableOpacity onPress={()=>onPressHandler('ALL')}>
@@ -65,6 +68,8 @@ const EntryLists = (props) => {
   </View>
 }
 
+
+//header Styling
 EntryLists.navigationOptions = navData => {
 
   const color = navData.navigation.getParam('color')

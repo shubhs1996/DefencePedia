@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import { RefreshControl } from 'react-native'
@@ -9,17 +9,33 @@ import ViewFeeds from '../component/ViewFeed'
 import HeaderButton from '../component/HeaderButton'
 
 
-const Feeds=()=>{
+const Feeds=(props)=>{
+  const {navigation}=props
   const dispatch=useDispatch()
   const [isrefreshing,setRefreshing]=useState(false)
     const availableFeeds =useSelector(state=>state.dailyInfo.dailyInfo)
 
-    const loadFeed=async()=>{
+
+//loading data when pull to refresh or screen come in focus again
+    const loadFeed=useCallback(async()=>{
       setRefreshing(true)
       await dispatch(LoadFeed())
       setRefreshing(false)
-    }
+    },[dispatch,navigation])
 
+//loading data when screen comes in focus again
+    useEffect(() => {
+      const willFocusSub = navigation.addListener(
+          'willFocus',
+          loadFeed
+          );
+  
+      return () => {
+          willFocusSub.remove();
+      };
+  }, [navigation,loadFeed]);
+  
+//rendering each feed
 const renderItem=(itemData)=>{
   return (<ViewFeeds
         title={itemData.item.title}
@@ -55,7 +71,7 @@ Feeds.navigationOptions=(navData)=>{
   return{
     headerTitle:'Daily Affairs',
      headerStyle:{
-       backgroundColor:'#f4511e90'
+       backgroundColor:'#f4511e'
      },
      headerTintColor: '#fff',
      headerTitleStyle:{

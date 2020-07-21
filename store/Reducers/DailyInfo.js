@@ -10,7 +10,7 @@ export default (state = init, action) => {
         case 'ADDFEED':
             return state;
         case 'SETFEED':
-            return { ...state, dailyInfo: action.feed }
+            return { ...state, dailyInfo: action.feed.reverse()}
     }
 
     return state;

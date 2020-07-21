@@ -17,6 +17,7 @@ import Feeds from '../Screens/Feeds'
 import Dashboard from '../Screens/Dashboard'
 import LoadingPage from '../Screens/loadingPage'
 import Suggestion from '../Screens/Suggestions'
+import AboutApp from '../Screens/AboutApp';
 
 
 
@@ -28,7 +29,6 @@ export const HomestackNavigator = createStackNavigator({
     EntryDetail: EntryDetail,
     About:About,
     Rank:RankStructure,
-  Feed:Feeds
 },{
     navigationOptions:{
         drawerIcon: drawerConfig => (
@@ -81,6 +81,16 @@ export const DailyAffairs=createStackNavigator({
   navigationOptions:{
     drawerIcon: drawerConfig => (
       <FontAwesome name="newspaper-o" size={24} color="black" />
+      )
+}
+})
+
+export const InfoAboutApp= createStackNavigator({
+  AboutApp: AboutApp
+},{
+  navigationOptions:{
+    drawerIcon: drawerConfig => (
+      <FontAwesome name="info" size={24} color="black" />
       )
 }
 })

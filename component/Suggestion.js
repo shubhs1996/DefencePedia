@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { StyleSheet, View, TextInput, Button, Text, Alert } from 'react-native';
+import { StyleSheet, View, TextInput, Button, Text, Alert ,ActivityIndicator} from 'react-native';
 
 import { addSuggestion } from '../store/Actions/suggestion'
+
+
+const validEmailRegex = RegExp(
+	/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+);
 
 
 const Suggestion = (props) => {
@@ -11,12 +16,53 @@ const Suggestion = (props) => {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [suggestion, setSuggestion] = useState()
+    const [loading,setloading]=useState(false)
+    const [errors,setErrors]=useState({
+       err:null,
+       validEmail:null
+        
+    })
 
 
+
+
+ //submission
     const onSubmitHandler = async () => {
+
+        if(!name||!email||!suggestion){
+        let validEmail=null;
+        if(email){
+             validEmail=validEmailRegex.test(email)?null:'Enter a valid email'
+        }
+       return setErrors({
+           ...errors,
+           validEmail:validEmail,
+           err:'Please fill all the columns'
+       })
+        }
+
+
+        if(!validEmailRegex.test(email)){
+            return setErrors({
+                ...errors,
+                err:null,
+                validEmail:'Enter a valid email'
+            })
+        }
+         
+
+        setloading(true)
         await dispatch(addSuggestion(name, email, suggestion))
+        setloading(false)
         Alert.alert('Thanku for your suggestion')
         props.onPress();
+    }
+
+
+    if(loading){
+        return (<View  style={styles.screen}>
+            <ActivityIndicator color={'black'} size={40}/>
+            </View>)
     }
 
 
@@ -25,6 +71,8 @@ const Suggestion = (props) => {
         <TextInput style={styles.textinput} value={name} placeholder='your name' onChangeText={(value) => setName(value)} />
         <TextInput style={styles.textinput} value={email} placeholder='your email' onChangeText={(value) => setEmail(value)} />
         <TextInput style={styles.textArea} value={suggestion} placeholder='write your suggestion here...' onChangeText={(value) => setSuggestion(value)} numberOfLines={10} multiline={true} />
+        <Text style={styles.err}>{errors.err}</Text>
+        <Text style={styles.err}>{errors.validEmail}</Text>
         <View style={styles.btngrp}>
             <View style={styles.btn}><Button
                 title={'Cancel'}
@@ -74,6 +122,10 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: '30%'
+    },
+    err:{
+        color:'red',
+        fontSize:15
     }
 })
 

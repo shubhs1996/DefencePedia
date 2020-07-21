@@ -6,9 +6,10 @@ export const LOGOUT = 'LOGOUT';
 
 let timer;
 
+//login part
 export const authenticate = (userId, token) => {
   return dispatch => {
-     dispatch({ type: AUTHENTICATE, userId: userId, token: token });
+    dispatch({ type: AUTHENTICATE, userId: userId, token: token });
   };
 };
 
@@ -28,10 +29,10 @@ export const login = (email, password) => {
       }
     );
 
-    
+
 
     if (!response.ok) {
-   let message='something went wrong! Please check your Password again'
+      let message = 'something went wrong! Please check your Password again'
       throw new Error(message);
     }
 
@@ -42,7 +43,7 @@ export const login = (email, password) => {
         resData.idToken,
       )
     );
-   
+
     saveDataToStorage(resData.idToken, resData.localId);
   };
 };
@@ -52,27 +53,15 @@ export const logout = () => {
   return { type: LOGOUT };
 };
 
-// const clearLogoutTimer = () => {
-//   if (timer) {
-//     clearTimeout(timer);
-//   }
-// };
 
-// const setLogoutTimer = expirationTime => {
-//   return dispatch => {
-//     timer = setTimeout(() => {
-//       dispatch(logout());
-//     }, expirationTime);
-//   };
-// };
 
+//saving data to localStorage
 const saveDataToStorage = (token, userId) => {
   AsyncStorage.setItem(
     'userData',
     JSON.stringify({
       token: token,
       userId: userId,
-     // expiryDate: expirationDate.toISOString()
     })
   );
 };

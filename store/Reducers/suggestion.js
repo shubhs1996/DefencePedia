@@ -10,7 +10,7 @@ export default (state=init , action )=>{
        case 'ADDSUGGESTION':
            return state;
            case 'SETSUGGESTION':
-               return {...state,Suggestions:action.Suggestions}
+               return {...state,Suggestions:action.Suggestions.reverse()}
    }
 
     return state;

@@ -1,3 +1,7 @@
+import {Info} from '../../modals/CollectionsModal'
+
+
+//adding info to server and in reducer state
 export const addInfo =(title,link,content)=>{
     return async dispatch =>{
    
@@ -28,13 +32,36 @@ export const addInfo =(title,link,content)=>{
    
    }
 
+
+   //loading informations from server
    export const loadInfo=()=>{
        return async dispatch=>{
-        const response = await fetch('https://defencepedia-cd337.firebaseio.com/Information.json')
+         try{ 
+           
+          const response = await fetch('https://defencepedia-cd337.firebaseio.com/Information.json')
 
-        const resData =await response.json()
-
-        console.log(resData)
+        if(!response.ok){
+          throw new Error('Something went wrong!')
+        }
+      const resData =await response.json()
+      let loadedInfos=[]
+      
+      for (const key in resData) {
+        loadedInfos.push(
+          new Info(
+            key,
+            resData[key].Title,
+            resData[key].Link,
+            resData[key].Content,
+            new Date(resData[key].createdAt)
+          )
+        );
+      }
+      
+      dispatch({type:'SETINFO',infos:loadedInfos})
+      } catch (err) {
+        throw err;
+      }
        }
    }
 

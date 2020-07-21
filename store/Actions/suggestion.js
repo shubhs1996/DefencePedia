@@ -1,7 +1,7 @@
 import { Suggestion } from '../../modals/CollectionsModal'
 
 
-
+//adding suggestion to firebase database
 export const addSuggestion = (name, email, suggestion) => {
   return async dispatch => {
 
@@ -25,7 +25,7 @@ export const addSuggestion = (name, email, suggestion) => {
   }
 }
 
-
+//loading suggestions available on server
 export const loadSuggestion = () => {
   return async dispatch => {
 

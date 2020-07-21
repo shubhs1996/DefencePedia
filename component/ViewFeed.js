@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { View, Image, StyleSheet, Text } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import moment from 'moment'
 
 
 
@@ -24,7 +25,10 @@ const ViewFeed = (props) => {
         </TouchableOpacity>
        {display==='none'?<Text>Click on title to read more</Text>:<View style={{ display:display }}>
         <Text style={styles.content}>{props.content}</Text>
+        
+
         </View>}
+        <Text style={styles.time}>{moment(props.createdAt).fromNow()}</Text>
     </View>
 }
 
@@ -50,8 +54,17 @@ const styles = StyleSheet.create({
     content: {
         fontSize: 20,
         fontFamily: 'nunito',
-        color:'gray'
+        color:'gray',
+        textAlign:'justify'
+    },
+    time: {
+        textAlign: 'justify',
+        fontSize: 15,
+        fontFamily: 'nunito-bold',
+        color: 'gray',
+        marginTop:5
     }
+
 
 
 

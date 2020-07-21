@@ -4,7 +4,7 @@ import { View, Text, AsyncStorage, StyleSheet, Modal,ActivityIndicator } from 'r
 import * as authActions from '../store/Actions/auth'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-import AddFeed from '../component/addFeed'
+import AddFeed from '../component/addFeedOrInformation'
 import { loadSuggestion } from '../store/Actions/suggestion'
 
 const Admin = (props) => {
@@ -16,6 +16,7 @@ const Admin = (props) => {
   const dispatch = useDispatch()
 
 
+  //checking for if already logged in or not
   useEffect(() => {
     const tryLogin = async () => {
       setIsLoading(true)
@@ -47,9 +48,10 @@ const Admin = (props) => {
     tryLogin();
 
   },[dispatch])
+//end
 
 
-
+//logging out admin
   const logouthandler = useCallback(async () => {
     await dispatch(authActions.logout())
     props.navigation.navigate('Login')

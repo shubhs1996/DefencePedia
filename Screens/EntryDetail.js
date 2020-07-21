@@ -7,7 +7,6 @@ import { ENTRYDETAILS, ENTRIESLIST } from '../dummy-data/data'
 
 const EntryDetail = (props) => {
    const entryId = props.navigation.getParam('entryId')
-   //const entryCategory = props.navigation.getParam('entryCategory');
    const dataentry = ENTRIESLIST.filter((entryDetail) => entryDetail.id === entryId)
    const availableData = ENTRYDETAILS.filter((entryDetail) => entryDetail.id === entryId)
 
@@ -15,6 +14,8 @@ const EntryDetail = (props) => {
       return <Text>No ENTRYDETAILS</Text>
    }
  
+
+   //checking if Type of entry is Qualifying or Direct
 if(dataentry[0].entryCategory==='QE'){
    return <QualifyingEntryDetail 
    title={availableData[0].name}
@@ -45,13 +46,13 @@ if(dataentry[0].entryCategory==='QE'){
    />
 
 }
-
+//end
 
 
   
 }
 
-
+//Header 
 EntryDetail.navigationOptions=navData=>{
 
    const color =navData.navigation.getParam('color')

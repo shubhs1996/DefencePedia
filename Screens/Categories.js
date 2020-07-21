@@ -6,10 +6,13 @@ import { Color } from '../constant/color'
 
 
 const Categories = (props) => {
+
     const id = props.navigation.getParam('force')
 
     const color = id === 'army' ? Color.army : id === 'navy' ? Color.navy : Color.airforce
 
+
+    //Categories and Options of each forces
     return <ScrollView>
     <View style={styles.imageContainer}>
       {id==='army'?<Image source={require('../assets/images/download.png')} style={styles.image}/>:
@@ -17,6 +20,7 @@ const Categories = (props) => {
       <Image source={require('../assets/images/indianAir.png')} style={styles.image}/>}
     </View>
        
+    
         <Options color={color} title='About' onSelect={() => props.navigation.navigate('About', { id: id ,color:color})} />
         <Options color={color} title='Entries' onSelect={() => props.navigation.navigate('EntryList', { id: id,color:color })} />
         <Options color={color} title='Wars and Operations' onSelect={() => props.navigation.navigate('War_and_Operations',{id:id,color:color})} />
@@ -24,14 +28,14 @@ const Categories = (props) => {
     </ScrollView>
 }
 
-
+//CSS 
 const styles = StyleSheet.create({
     imageContainer:{
-        width:350,
+        width:'80%',
         height:400,
-      borderWidth:1,
-      borderRadius:300,
-      marginHorizontal:'5%',
+      borderWidth:0.1,
+      borderRadius:200,
+      marginHorizontal:'10%',
       overflow:'hidden',
     },
 image:{
